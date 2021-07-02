@@ -1,0 +1,11 @@
+type User {
+    user_id: ID!
+    first: String!
+    last: String!
+    attributes: [Attribute]
+}
+
+type Attribute {
+    attribute_id: ID!
+    role: String!
+}

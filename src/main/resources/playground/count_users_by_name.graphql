@@ -1,0 +1,3 @@
+query COUNT_USERS_BY_NAME($first: String) {
+    countUsersWithName(first: $first)
+}

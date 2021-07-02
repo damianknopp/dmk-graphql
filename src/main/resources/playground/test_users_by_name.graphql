@@ -1,0 +1,11 @@
+query GET_USERS_BY_NAME($first: String) {
+    testUsersWithName(first: $first) {
+        user_id
+        first
+        last
+        attributes {
+            attribute_id
+            role
+        }
+    }
+}

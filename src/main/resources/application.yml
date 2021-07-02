@@ -1,0 +1,78 @@
+spring:
+  application:
+    name: "dmk-graphql"
+  devtools:
+    livereload:
+      enabled: true
+  datasource:
+    driver-class-name: org.hsqldb.jdbc.JDBCDriver
+    url: jdbc:hsqldb:mem:testdb;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+    initialization-mode: always
+    schema: classpath:hsql/schema.sql
+    data: classpath:hsql/data.sql
+#  jpa:
+#    hibernate:
+#      ddl-auto: create
+
+server:
+  http2:
+    enabled: true
+
+graphql:
+  tools:
+    schema-location-pattern: "**/*.graphqls"
+    introspection-enabled: true
+  servlet:
+    tracing-enabled: true
+    actuator-metrics: true
+    # Sets if GraphQL servlet should be created and exposed. If not specified defaults to "true".
+    enabled: true
+    # Sets the path where GraphQL servlet will be exposed. If not specified defaults to "/graphql"
+    mapping: /graphql
+    cors-enabled: true
+    cors:
+      allowed-origins: http://localhost
+      allowed-methods: GET, HEAD, POST
+    # if you want to @ExceptionHandler annotation for custom GraphQLErrors
+    exception-handlers-enabled: true
+    context-setting: PER_REQUEST_WITH_INSTRUMENTATION
+    # Sets if asynchronous operations are supported for GraphQL requests. If not specified defaults to true.
+    async-mode-enabled: true
+    maxQueryDepth: 24
+
+  voyager:
+    # set to false for prod environments
+    enabled: true
+
+  playground:
+    # set to false for prod environments
+    enabled: true
+    headers:
+      Authorization: Bearer <token>
+    tabs:
+      - name: test user by id
+        query: classpath:playground/test_user_query.graphql
+        variables: classpath:playground/user_query_var.json
+      - name: test user by name
+        query: classpath:playground/test_users_by_name.graphql
+        variables: classpath:playground/users_by_name_var.json
+      - name: user by id
+        query: classpath:playground/user_query.graphql
+        variables: classpath:playground/user_query_var.json
+      - name: users by name
+        query: classpath:playground/users_by_name.graphql
+        variables: classpath:playground/users_by_name_var.json
+      - name: count users by name
+        query: classpath:playground/count_users_by_name.graphql
+        variables: classpath:playground/users_by_name_var.json
+
+# actuator endpoints
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+

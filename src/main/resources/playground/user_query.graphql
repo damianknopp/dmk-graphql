@@ -1,0 +1,12 @@
+query GET_USER($id: ID) {
+    userById(id: $id) {
+        user_id
+        first
+        last
+        attributes {
+            attribute_id
+            role
+        }
+    }
+}
+

@@ -1,0 +1,14 @@
+# graphql queries
+type Query {
+    testUserById(id: ID): User!
+    testUsersWithName(first: String): [User]!
+
+    userById(id: ID): User!
+    usersWithName(first: String): [User]!
+
+    countUsersWithName(first: String): Int
+}
+
+#type Mutation {
+#    addUser(first: String!, last: String!, attributes: [Attribute]) : User!
+#}
